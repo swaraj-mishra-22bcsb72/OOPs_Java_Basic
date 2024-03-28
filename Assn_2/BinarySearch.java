@@ -1,0 +1,38 @@
+import java.util.Scanner;
+import java.util.Arrays;
+
+class ArrayLinearSearch {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the number of elements in the array: ");
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+		
+        System.out.println("Enter " + n + " elements:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+		Arrays.sort(arr);
+		
+        System.out.print("Enter the element to search: ");
+        int target = sc.nextInt();
+        
+		int low = 0, high = n-1;
+		int mid;
+		while(low < high){
+			mid = (low+high)/2;
+			
+			if (arr[mid] == target) {
+				System.out.println("Element " + target + " found at index " + mid);
+				break;
+			} else if (arr[mid] > target) {
+				high = mid -1;
+			} else if (arr[mid] < target) {
+				low = mid +1;
+			}
+		}
+	    if(high <= low) {
+            System.out.println("Element " + target + " not found in the array.");
+        }        
+    }
+}
